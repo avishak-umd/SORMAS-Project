@@ -14416,4 +14416,26 @@ alter table drugsusceptibility_history add column IF NOT EXISTS erythromycinSusc
 
 INSERT INTO schema_version (version_number, comment) VALUES (578, 'Update history tables #13516');
 
+-- 2025-07-14 Add hospitalization and additional fields to external message
+
+ALTER TABLE externalmessage ADD COLUMN casecomments varchar(255);
+ALTER TABLE externalmessage_history ADD COLUMN casecomments varchar(255);
+
+ALTER TABLE externalmessage ADD COLUMN hospitalizationfacilityname varchar(255);
+ALTER TABLE externalmessage ADD COLUMN hospitalizationfacilityexternalid varchar(255);
+ALTER TABLE externalmessage ADD COLUMN hospitalizationfacilitydepartment varchar(255);
+ALTER TABLE externalmessage ADD COLUMN hospitalizationadmissiondate timestamp;
+ALTER TABLE externalmessage ADD COLUMN hospitalizationdischargedate timestamp;
+ALTER TABLE externalmessage_history ADD COLUMN hospitalizationfacilityname varchar(255);
+ALTER TABLE externalmessage_history ADD COLUMN hospitalizationfacilityexternalid varchar(255);
+ALTER TABLE externalmessage_history ADD COLUMN hospitalizationfacilitydepartment varchar(255);
+ALTER TABLE externalmessage_history ADD COLUMN hospitalizationadmissiondate timestamp;
+ALTER TABLE externalmessage_history ADD COLUMN hospitalizationdischargedate timestamp;
+
+ALTER TABLE previoushospitalization ADD COLUMN healthfacilitydepartment varchar(255);
+ALTER TABLE previoushospitalization_history ADD COLUMN healthfacilitydepartment varchar(255);
+
+INSERT INTO schema_version (version_number, comment) VALUES (579, 'Update external message with hospitalization fields #13516');
+
+
 -- *** Insert new sql commands BEFORE this line. Remember to always consider _history tables. ***
